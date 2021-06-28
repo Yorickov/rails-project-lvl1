@@ -1,4 +1,10 @@
+lint:
+	bundle exec rubocop
+
 test:
+	bundle exec rspec
+
+test-all:
 	bundle exec rake
 
 c:
