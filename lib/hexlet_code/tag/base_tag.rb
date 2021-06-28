@@ -13,7 +13,7 @@ module HexletCode
       attr_reader :name
 
       def attrubutes
-        options.map { |key, value| " #{key}=\"#{value}\"" }.join("")
+        options.map { |key, value| " #{key}=\"#{value}\"" }.join
       end
 
       private
