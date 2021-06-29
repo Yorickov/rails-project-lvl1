@@ -5,5 +5,9 @@ require_relative "hexlet_code/tag"
 
 module HexletCode
   class Error < StandardError; end
-  # Your code goes here...
+
+  def self.form_for(_model, options = {}, &_block)
+    action = options.fetch(:url, "#")
+    Tag.build("form", { action: action, method: "post" }) { "" }
+  end
 end
