@@ -8,9 +8,9 @@ RSpec.describe HexletCode::Tag do
   let(:body) { proc { "Email" } }
 
   context "when no block passed" do
-    it "SingeTag is called" do
+    it "SingleTag is called" do
       expect(described_class::SingleTag)
-        .to receive(:new)
+        .to receive(:call)
         .with(name, options)
         .and_call_original
 
@@ -21,7 +21,7 @@ RSpec.describe HexletCode::Tag do
   context "when block passed" do
     it "PairTag is called" do
       expect(described_class::PairTag)
-        .to receive(:new)
+        .to receive(:call)
         .with(name, options) do |&block|
           expect(block).to be(body)
         end

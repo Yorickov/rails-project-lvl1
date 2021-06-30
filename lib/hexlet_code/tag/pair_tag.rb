@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "base_tag"
+require_relative "base"
 
 module HexletCode
   module Tag
-    class PairTag < BaseTag
-      def initialize(*args)
-        super(*args)
-
-        @body = yield
-      end
-
-      def build
-        "<#{name}#{attrubutes}>#{body}</#{name}>"
+    class PairTag < Base
+      def call
+        "<#{name}#{attributes}>#{body}</#{name}>"
       end
 
       private

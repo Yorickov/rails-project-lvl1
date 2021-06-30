@@ -4,10 +4,10 @@ require "hexlet_code"
 
 RSpec.describe HexletCode::Tag::PairTag do
   let(:name) { "label" }
-  let(:options) { { for: "email", class: "form-label" } }
+  let(:options) { { for: "email", required: true, class: "form-label" } }
   let(:body) { proc { "Email" } }
 
-  subject { described_class.new(name, options, &body) }
+  subject { described_class.call(name, options, &body) }
 
   context "without attrubutes" do
     let(:options) { {} }
@@ -15,15 +15,15 @@ RSpec.describe HexletCode::Tag::PairTag do
     it "returns tag with body" do
       expected = "<label>Email</label>"
 
-      expect(subject.build).to eq expected
+      expect(subject).to eq expected
     end
   end
 
   context "with attrubutes" do
     it "returns tag with attrubutes and body" do
-      expected = '<label for="email" class="form-label">Email</label>'
+      expected = '<label for="email" required class="form-label">Email</label>'
 
-      expect(subject.build).to eq expected
+      expect(subject).to eq expected
     end
   end
 end

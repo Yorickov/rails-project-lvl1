@@ -9,9 +9,9 @@ module HexletCode
 
     def build(name, options = {}, &block)
       if block_given?
-        PairTag.new(name, options, &block).build
+        PairTag.call(name, options, &block)
       else
-        SingleTag.new(name, options).build
+        SingleTag.call(name, options)
       end
     end
   end

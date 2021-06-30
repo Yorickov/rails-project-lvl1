@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "base_tag"
+require_relative "base"
 
 module HexletCode
   module Tag
-    class SingleTag < BaseTag
-      def build
-        "<#{name}#{attrubutes}>"
+    class SingleTag < Base
+      def call
+        "<#{name}#{attributes}>"
       end
     end
   end

@@ -13,7 +13,7 @@ RSpec.describe HexletCode do
       it "returns form with empty action" do
         expected = '<form action="#" method="post"></form>'
 
-        expect(described_class.form_for(user) { "" }).to eq expected
+        expect(described_class.form_for(user, &:input)).to eq expected
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.describe HexletCode do
       it "returns form with url action" do
         expected = '<form action="/users" method="post"></form>'
 
-        expect(described_class.form_for(user, options) { "" }).to eq expected
+        expect(described_class.form_for(user, options, &:input)).to eq expected
       end
     end
   end

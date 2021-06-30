@@ -2,18 +2,25 @@
 
 module HexletCode
   module Tag
-    class BaseTag
+    class Base
+      def self.call(...)
+        new(...).call
+      end
+
       def initialize(name, options = {})
         @name = name
         @options = options
+        @body = yield if block_given?
       end
 
       protected
 
       attr_reader :name
 
-      def attrubutes
-        options.map { |key, value| " #{key}=\"#{value}\"" }.join
+      def attributes
+        options.map do |key, value|
+          value == true ? " #{key}" : " #{key}=\"#{value}\""
+        end.join
       end
 
       private
