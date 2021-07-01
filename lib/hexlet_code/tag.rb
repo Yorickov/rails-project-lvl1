@@ -5,9 +5,7 @@ require_relative "tag/pair_tag"
 
 module HexletCode
   module Tag
-    module_function
-
-    def build(name, options = {}, &block)
+    def self.build(name, options = {}, &block)
       if block_given?
         PairTag.call(name, options, &block)
       else

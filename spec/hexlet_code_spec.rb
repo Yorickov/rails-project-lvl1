@@ -6,22 +6,44 @@ RSpec.describe HexletCode do
   end
 
   describe "#form_for" do
-    let(:options) { { url: "/users" } }
-    let(:user) { nil }
+    let(:url) { "/users" }
+    let(:user) do
+      Struct.new(:name, :job, :gender, keyword_init: true)
+            .new(name: "rob", job: "hexlet", gender: "m")
+    end
 
-    context "without options" do
-      it "returns form with empty action" do
-        expected = '<form action="#" method="post"></form>'
+    context "successfully" do
+      it "returns form in html" do
+        actual = described_class.form_for user, url: url do |f|
+          f.input :name
+          f.input :job, as: :text
+          f.input :gender, as: :select, collection: %w[m f]
+        end
 
-        expect(described_class.form_for(user, &:input)).to eq expected
+        expected =
+          '<form action="/users" method="post">' \
+            '<input type="text" name="name" value="rob">' \
+            '<textarea name="job" cols="20" rows="40">hexlet</textarea>' \
+            '<select name="gender">' \
+              '<option value="m" selected>m</option>' \
+              '<option value="f">f</option>' \
+            "</select>" \
+          "</form>"
+
+        expect(actual).to eq expected
       end
     end
 
-    context "with options" do
-      it "returns form with url action" do
-        expected = '<form action="/users" method="post"></form>'
+    context "with errors" do
+      it "if record has wrong type" do
+        expect { described_class.form_for({}) { "" } }
+          .to raise_error ArgumentError, "Record has wrong type"
+      end
 
-        expect(described_class.form_for(user, options, &:input)).to eq expected
+      it "if there are no select options" do
+        expect do
+          described_class.form_for(user) { |f| f.input :gender, as: :select }
+        end.to raise_error HexletCode::Error, "No options for select"
       end
     end
   end
