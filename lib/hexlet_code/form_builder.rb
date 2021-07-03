@@ -4,7 +4,7 @@ require_relative "helpers"
 
 module HexletCode
   class FormBuilder
-    TYPES = {
+    INPUT_TYPES = {
       string: Helpers::TextInput,
       text: Helpers::Textarea,
       select: Helpers::Select
@@ -19,13 +19,18 @@ module HexletCode
       value = record[name] || ""
 
       type = options.fetch(:as, :string)
-      helper = TYPES[type]
+      helper = INPUT_TYPES[type].call(**options.except(:as), name: name, value: value)
+      label = Helpers::Label.call(**options.except(:as), name: name)
 
-      inputs << helper.call(name, value, options.except(:as, :html), options.fetch(:html, {}))
+      inputs << [label, helper].join
     end
 
     def output
       inputs.join
+    end
+
+    def submit(value = nil, options = {})
+      inputs << Helpers::SubmitInput.call(**options, value: value)
     end
 
     private

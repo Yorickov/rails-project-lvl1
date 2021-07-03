@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
+require_relative "base"
+
 module HexletCode
   module Helpers
-    module Textarea
+    class Textarea < Base
       TAG_NAME = "textarea"
-      DEFAULT_OPTIONS = { cols: 20, rows: 40 }.freeze
+      DEFAULT_HTML_OPTIONS = { cols: 20, rows: 40 }.freeze
 
-      def self.call(name, value, _options, html_options)
-        normalized_html_options = DEFAULT_OPTIONS.merge(html_options)
+      def call
+        normalized_html_options = DEFAULT_HTML_OPTIONS.merge(html_options)
 
-        Tag.build(TAG_NAME, name: name, **normalized_html_options) { value }
+        builder.build(TAG_NAME, **options.slice(:name), **normalized_html_options) { options[:value] }
       end
     end
   end

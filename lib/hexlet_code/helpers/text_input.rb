@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
+require_relative "base"
+
 module HexletCode
   module Helpers
-    module TextInput
+    class TextInput < Base
       TAG_NAME = "input"
       TAG_TYPE = "text"
 
-      def self.call(name, value, _options, html_options)
-        Tag.build(TAG_NAME, type: TAG_TYPE, name: name, value: value, **html_options)
+      def call
+        builder.build(TAG_NAME, type: TAG_TYPE, **options.slice(:name, :value), **html_options)
       end
     end
   end
