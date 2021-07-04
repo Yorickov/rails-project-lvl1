@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "helpers"
+require_relative 'helpers'
 
 module HexletCode
   class FormBuilder
@@ -16,7 +16,7 @@ module HexletCode
     end
 
     def input(name, options = {})
-      value = record[name] || ""
+      value = record[name] || ''
 
       type = options.fetch(:as, :string)
       helper = INPUT_TYPES[type].call(**options.except(:as), name: name, value: value)

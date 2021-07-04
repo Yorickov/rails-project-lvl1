@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "base"
+require_relative 'base'
 
 module HexletCode
   module Helpers
     class Select < Base
-      TAG_SELECT_NAME = "select"
-      TAG_OPTION_NAME = "option"
+      TAG_SELECT_NAME = 'select'
+      TAG_OPTION_NAME = 'option'
 
       def call
         validate!(options)
@@ -26,7 +26,7 @@ module HexletCode
       end
 
       def validate!(options)
-        raise HexletCode::Error, "No options for select" unless options.key?(:collection)
+        raise HexletCode::Error, 'No options for select' unless options.key?(:collection)
       end
     end
   end
