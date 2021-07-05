@@ -15,7 +15,7 @@ RSpec.describe HexletCode do
     context 'when successfully called' do
       it 'returns form in html' do
         actual = described_class.form_for user, url: url do |f|
-          f.input :name
+          f.input :name, class: 'user-input'
           f.input :job, as: :text
           f.input :gender, as: :select, collection: %w[m f]
           f.submit
@@ -24,7 +24,7 @@ RSpec.describe HexletCode do
         expected =
           '<form action="/users" method="post">' \
             '<label for="name">Name</label>' \
-            '<input type="text" name="name" value="rob">' \
+            '<input type="text" name="name" value="rob" class="user-input">' \
             '<label for="job">Job</label>' \
             '<textarea name="job" cols="20" rows="40">hexlet</textarea>' \
             '<label for="gender">Gender</label>' \

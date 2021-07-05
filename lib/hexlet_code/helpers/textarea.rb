@@ -11,7 +11,7 @@ module HexletCode
       def call
         normalized_html_options = DEFAULT_HTML_OPTIONS.merge(html_options)
 
-        builder.build(TAG_NAME, **options.slice(:name), **normalized_html_options) { options[:value] }
+        builder.build(TAG_NAME, **service_options.slice(:name), **normalized_html_options) { service_options[:value] }
       end
     end
   end

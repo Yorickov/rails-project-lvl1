@@ -11,7 +11,7 @@ module HexletCode
       DEFAULT_VALUE = 'Save'
 
       def call
-        value = options[:value] || DEFAULT_VALUE
+        value = service_options[:value] || DEFAULT_VALUE
         builder.build(TAG_NAME, type: TAG_TYPE, name: DEFAULT_NAME, value: value, **html_options)
       end
     end

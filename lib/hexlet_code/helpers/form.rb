@@ -14,8 +14,8 @@ module HexletCode
       end
 
       def call
-        method = options.fetch(:method, 'post')
-        action = options.fetch(:url, '#')
+        method = service_options.fetch(:method, 'post')
+        action = service_options.fetch(:url, '#')
 
         builder.build(TAG_NAME, action: action, method: method) do
           yield form_builder

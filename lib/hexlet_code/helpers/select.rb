@@ -9,15 +9,19 @@ module HexletCode
       TAG_OPTION_NAME = 'option'
 
       def call
-        validate!(options)
+        validate!(service_options)
 
-        builder.build(TAG_SELECT_NAME, **options.slice(:name), **html_options) { select_options(options) }
+        builder.build(
+          TAG_SELECT_NAME,
+          **service_options.slice(:name),
+          **html_options
+        ) { select_options(service_options[:collection]) }
       end
 
       private
 
-      def select_options(options)
-        options[:collection].map.with_index do |option_name, index|
+      def select_options(collection)
+        collection.map.with_index do |option_name, index|
           opts = { value: option_name }
           opts[:selected] = true if index.zero?
 

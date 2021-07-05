@@ -4,6 +4,8 @@ require_relative '../tag'
 
 module HexletCode
   module Helpers
+    SERVICE_OPTIONS = %i[method url name value as collection].freeze
+
     class Base
       def self.call(*args)
         new(*args).call
@@ -11,13 +13,13 @@ module HexletCode
 
       def initialize(options = {})
         @builder = Tag
-        @options = options.except(:html)
-        @html_options = options.fetch(:html, {})
+        @service_options, @html_options =
+          options.partition { |key, _value| SERVICE_OPTIONS.include?(key) }.map(&:to_h)
       end
 
       protected
 
-      attr_reader :builder, :options, :html_options
+      attr_reader :builder, :service_options, :html_options
     end
   end
 end

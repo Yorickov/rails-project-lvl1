@@ -8,8 +8,8 @@ module HexletCode
       TAG_NAME = 'label'
 
       def call
-        name = options[:name]
-        builder.build(TAG_NAME, for: name, **html_options) { name.to_s.capitalize }
+        name = service_options[:name]
+        builder.build(TAG_NAME, for: name) { name.to_s.capitalize }
       end
     end
   end

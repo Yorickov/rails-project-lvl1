@@ -19,8 +19,8 @@ module HexletCode
       value = record[name] || ''
 
       type = options.fetch(:as, :string)
-      helper = INPUT_TYPES[type].call(**options.except(:as), name: name, value: value)
-      label = Helpers::Label.call(**options.except(:as), name: name)
+      helper = INPUT_TYPES[type].call(**options, name: name, value: value)
+      label = Helpers::Label.call(**options, name: name)
 
       self.body += [label, helper].join
     end
