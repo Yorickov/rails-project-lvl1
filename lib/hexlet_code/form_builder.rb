@@ -12,7 +12,7 @@ module HexletCode
 
     def initialize(record)
       @record = record
-      @inputs = []
+      @body = ''
     end
 
     def input(name, options = {})
@@ -22,19 +22,16 @@ module HexletCode
       helper = INPUT_TYPES[type].call(**options.except(:as), name: name, value: value)
       label = Helpers::Label.call(**options.except(:as), name: name)
 
-      inputs << [label, helper].join
-    end
-
-    def output
-      inputs.join
+      self.body += [label, helper].join
     end
 
     def submit(value = nil, options = {})
-      inputs << Helpers::SubmitInput.call(**options, value: value)
+      self.body += Helpers::SubmitInput.call(**options, value: value)
     end
 
     private
 
-    attr_reader :record, :inputs
+    attr_reader :record
+    attr_accessor :body
   end
 end

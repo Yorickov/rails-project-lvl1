@@ -19,7 +19,6 @@ module HexletCode
 
         builder.build(TAG_NAME, action: action, method: method) do
           yield form_builder
-          form_builder.output
         end
       end
 
