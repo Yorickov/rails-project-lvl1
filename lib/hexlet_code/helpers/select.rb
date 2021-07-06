@@ -9,7 +9,7 @@ module HexletCode
       TAG_OPTION_NAME = 'option'
 
       def call
-        validate!(service_options)
+        validate_options!
 
         builder.build(
           TAG_SELECT_NAME,
@@ -29,8 +29,8 @@ module HexletCode
         end.join
       end
 
-      def validate!(options)
-        raise HexletCode::Error, 'No options for select' unless options.key?(:collection)
+      def validate_options!
+        raise HexletCode::Error, 'No options for select' unless service_options.key?(:collection)
       end
     end
   end

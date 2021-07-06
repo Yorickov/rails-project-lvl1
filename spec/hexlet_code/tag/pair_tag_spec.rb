@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'hexlet_code'
 
 RSpec.describe HexletCode::Tag::PairTag do
