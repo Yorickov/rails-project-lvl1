@@ -12,7 +12,8 @@ module HexletCode
 
       def call
         value = service_options[:value] || DEFAULT_VALUE
-        builder.build(TAG_NAME, type: TAG_TYPE, name: DEFAULT_NAME, value: value, **html_options)
+
+        build_tag(type: TAG_TYPE, name: DEFAULT_NAME, value: value, **html_options)
       end
     end
   end

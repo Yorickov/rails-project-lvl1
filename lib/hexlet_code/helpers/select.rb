@@ -5,14 +5,13 @@ require_relative 'base'
 module HexletCode
   module Helpers
     class Select < Base
-      TAG_SELECT_NAME = 'select'
+      TAG_NAME = 'select'
       TAG_OPTION_NAME = 'option'
 
       def call
         validate_options!
 
-        builder.build(
-          TAG_SELECT_NAME,
+        build_tag(
           **service_options.slice(:name),
           **html_options
         ) { select_options(service_options[:collection]) }
@@ -25,7 +24,7 @@ module HexletCode
           opts = { value: option_name }
           opts[:selected] = true if index.zero?
 
-          builder.build(TAG_OPTION_NAME, opts) { option_name }
+          build_tag(tag_name: TAG_OPTION_NAME, **opts) { option_name }
         end.join
       end
 

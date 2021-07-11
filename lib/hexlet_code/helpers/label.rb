@@ -9,7 +9,8 @@ module HexletCode
 
       def call
         name = service_options[:name]
-        builder.build(TAG_NAME, for: name) { name.to_s.capitalize }
+
+        build_tag(for: name) { name.to_s.capitalize }
       end
     end
   end
