@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'hexlet_code'
 
-RSpec.describe HexletCode::Tag::SingleTag do
+RSpec.describe HexletCode::TagHelpers::SingleTag do
   subject(:result) { described_class.call(name, options) }
 
   let(:name) { 'input' }

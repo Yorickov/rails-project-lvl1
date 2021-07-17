@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'helpers'
-
 module HexletCode
   class FormBuilder
     INPUT_TYPES = {
-      string: Helpers::TextInput,
-      text: Helpers::Textarea,
-      select: Helpers::Select
+      string: Tags::TextInput,
+      text: Tags::Textarea,
+      select: Tags::Select
     }.freeze
 
     def initialize(record)
@@ -20,13 +18,13 @@ module HexletCode
 
       type = options.fetch(:as, :string)
       helper = INPUT_TYPES[type].call(**options, name: name, value: value)
-      label = Helpers::Label.call(**options, name: name)
+      label = Tags::Label.call(**options, name: name)
 
       self.body += [label, helper].join
     end
 
     def submit(value = nil, options = {})
-      self.body += Helpers::SubmitInput.call(**options, value: value)
+      self.body += Tags::SubmitInput.call(**options, value: value)
     end
 
     private

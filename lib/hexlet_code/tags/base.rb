@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../tag'
-
 module HexletCode
-  module Helpers
+  module Tags
     SERVICE_OPTIONS = %i[method url name value as collection].freeze
 
     class Base
@@ -12,7 +10,6 @@ module HexletCode
       end
 
       def initialize(options = {})
-        @builder = Tag
         @service_options, @html_options = setup_options(options)
       end
 
@@ -21,7 +18,7 @@ module HexletCode
       attr_reader :builder, :service_options, :html_options
 
       def build_tag(tag_name: self.class::TAG_NAME, **kwargs, &block)
-        builder.build(tag_name, kwargs, &block)
+        TagHelpers.build(tag_name, kwargs, &block)
       end
 
       private

@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'hexlet_code'
 
-RSpec.describe HexletCode::Tag::PairTag do
+RSpec.describe HexletCode::TagHelpers::PairTag do
   subject(:result) { described_class.call(name, options, &body) }
 
   let(:name) { 'label' }

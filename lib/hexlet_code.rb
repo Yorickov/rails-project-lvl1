@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require_relative 'hexlet_code/version'
-require_relative 'hexlet_code/form_builder'
-require_relative 'hexlet_code/helpers'
-
 module HexletCode
   class Error < StandardError; end
+
+  autoload :FormBuilder, 'hexlet_code/form_builder'
+  autoload :TagHelpers, 'hexlet_code/tag_helpers'
+  autoload :Tags, 'hexlet_code/tags'
 
   class << self
     def form_for(record, options = {}, &block)
       validate!(record)
 
       form_builder = FormBuilder.new(record)
-      Helpers::Form.new(**options, form_builder: form_builder).call(&block)
+      Tags::Form.new(**options, form_builder: form_builder).call(&block)
     end
 
     private

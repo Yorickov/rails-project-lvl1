@@ -3,7 +3,7 @@
 require_relative 'base'
 
 module HexletCode
-  module Helpers
+  module Tags
     class Label < Base
       TAG_NAME = 'label'
 

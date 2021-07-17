@@ -3,7 +3,7 @@
 require_relative 'base'
 
 module HexletCode
-  module Tag
+  module TagHelpers
     class SingleTag < Base
       def call
         "<#{name}#{attributes}>"

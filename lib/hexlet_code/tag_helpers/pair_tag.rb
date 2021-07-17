@@ -3,7 +3,7 @@
 require_relative 'base'
 
 module HexletCode
-  module Tag
+  module TagHelpers
     class PairTag < Base
       def call
         "<#{name}#{attributes}>#{body}</#{name}>"

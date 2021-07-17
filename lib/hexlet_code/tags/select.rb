@@ -3,7 +3,7 @@
 require_relative 'base'
 
 module HexletCode
-  module Helpers
+  module Tags
     class Select < Base
       TAG_NAME = 'select'
       TAG_OPTION_NAME = 'option'

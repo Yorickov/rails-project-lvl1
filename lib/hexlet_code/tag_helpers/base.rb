@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module Tag
+  module TagHelpers
     class Base
       def self.call(...)
         new(...).call
