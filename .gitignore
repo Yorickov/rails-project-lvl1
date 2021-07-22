@@ -10,4 +10,3 @@
 
 # rspec failure tracking
 .rspec_status
-/spec/hexlet_code/hexlet_code_spec.rb
