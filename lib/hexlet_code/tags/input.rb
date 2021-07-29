@@ -4,7 +4,7 @@ require_relative 'base'
 
 module HexletCode
   module Tags
-    class TextInput < Base
+    class Input < Base
       TAG_NAME = 'input'
       TAG_TYPE = 'text'
 

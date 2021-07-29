@@ -4,7 +4,7 @@ require_relative 'base'
 
 module HexletCode
   module Tags
-    class Textarea < Base
+    class Text < Base
       TAG_NAME = 'textarea'
       DEFAULT_HTML_OPTIONS = { cols: 20, rows: 40 }.freeze
 

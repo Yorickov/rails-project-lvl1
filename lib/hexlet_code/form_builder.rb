@@ -2,12 +2,6 @@
 
 module HexletCode
   class FormBuilder
-    INPUT_TYPES = {
-      string: Tags::TextInput,
-      text: Tags::Textarea,
-      select: Tags::Select
-    }.freeze
-
     def initialize(record)
       @record = record
       @body = ''
@@ -16,11 +10,11 @@ module HexletCode
     def input(name, options = {})
       value = record[name] || ''
 
-      type = options.fetch(:as, :string)
-      helper = INPUT_TYPES[type].call(**options, name: name, value: value)
-      label = Tags::Label.call(**options, name: name)
+      field_type = options.fetch(:as, :input)
+      field_body = constantinize(field_type).call(**options, name: name, value: value)
+      label_body = Tags::Label.call(**options, name: name)
 
-      self.body += [label, helper].join
+      self.body += [label_body, field_body].join
     end
 
     def submit(value = nil, options = {})
@@ -31,5 +25,9 @@ module HexletCode
 
     attr_reader :record
     attr_accessor :body
+
+    def constantinize(string)
+      Tags.const_get(string.capitalize)
+    end
   end
 end
