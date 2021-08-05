@@ -2,30 +2,30 @@
 
 module HexletCode
   module Tags
-    SERVICE_OPTIONS = %i[method url name value as collection].freeze
-
     class Base
-      def self.call(*args)
-        new(*args).call
+      def self.call(...)
+        new(...).call
       end
 
-      def initialize(options = {})
-        @service_options, @html_options = setup_options(options)
+      def initialize(name, options = {})
+        @name = name
+        @options = options
+        @body = yield if block_given?
       end
 
       protected
 
-      attr_reader :builder, :service_options, :html_options
+      attr_reader :name
 
-      def build_tag(tag_name: self.class::TAG_NAME, **kwargs, &block)
-        TagHelpers.build(tag_name, kwargs, &block)
+      def attributes
+        options.map do |key, value|
+          value == true ? " #{key}" : " #{key}=\"#{value}\""
+        end.join
       end
 
       private
 
-      def setup_options(options)
-        options.partition { |key, _value| SERVICE_OPTIONS.include?(key) }.map(&:to_h)
-      end
+      attr_reader :options
     end
   end
 end

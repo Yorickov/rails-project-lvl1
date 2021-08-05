@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe HexletCode::TagHelpers::SingleTag do
+RSpec.describe HexletCode::Tags::SingleTag do
   subject(:result) { described_class.call(name, options) }
 
   let(:name) { 'input' }

@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'tags/input'
-require_relative 'tags/text'
-require_relative 'tags/select'
-require_relative 'tags/label'
-require_relative 'tags/submit_input'
-require_relative 'tags/form'
+require_relative 'tags/single_tag'
+require_relative 'tags/pair_tag'
 
 module HexletCode
   module Tags
+    def self.build(name, options = {}, &block)
+      if block.nil?
+        SingleTag.call(name, options)
+      else
+        PairTag.call(name, options, &block)
+      end
+    end
   end
 end

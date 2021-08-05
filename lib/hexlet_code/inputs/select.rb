@@ -3,15 +3,15 @@
 require_relative 'base'
 
 module HexletCode
-  module Tags
+  module Inputs
     class Select < Base
-      TAG_NAME = 'select'
-      TAG_OPTION_NAME = 'option'
+      NAME = 'select'
+      OPTION_NAME = 'option'
 
       def call
         validate_options!
 
-        build_tag(
+        render(
           **service_options.slice(:name),
           **html_options
         ) { select_options(service_options[:collection]) }
@@ -24,7 +24,7 @@ module HexletCode
           opts = { value: option_name }
           opts[:selected] = true if index.zero?
 
-          build_tag(tag_name: TAG_OPTION_NAME, **opts) { option_name }
+          render(tag_name: OPTION_NAME, **opts) { option_name }
         end.join
       end
 

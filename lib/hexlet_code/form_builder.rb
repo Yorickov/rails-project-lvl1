@@ -12,13 +12,13 @@ module HexletCode
 
       field_type = options.fetch(:as, :input)
       field_body = constantinize(field_type).call(**options, name: name, value: value)
-      label_body = Tags::Label.call(**options, name: name)
+      label_body = Inputs::Label.call(**options, name: name)
 
       self.body += [label_body, field_body].join
     end
 
     def submit(value = nil, options = {})
-      self.body += Tags::SubmitInput.call(**options, value: value)
+      self.body += Inputs::Submit.call(**options, value: value)
     end
 
     private
@@ -27,7 +27,7 @@ module HexletCode
     attr_accessor :body
 
     def constantinize(string)
-      Tags.const_get(string.capitalize)
+      Inputs.const_get(string.capitalize)
     end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe HexletCode::TagHelpers::PairTag do
+RSpec.describe HexletCode::Tags::PairTag do
   subject(:result) { described_class.call(name, options, &body) }
 
   let(:name) { 'label' }
